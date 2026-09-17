@@ -1,0 +1,24 @@
+[package]
+name = "cybermeta"
+version = "0.1.0"
+edition = "2021"
+description = "TUI-first EXIF workstation for the Cybercore Systems Framework"
+license = "MIT"
+
+[[bin]]
+name = "cybermeta"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+crossterm = "0.29"
+cybercore = { path = "../../.sysops/cybercore" }
+little_exif = "0.6"
+ratatui = "0.30"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[profile.release]
+strip = true
+lto = "thin"
