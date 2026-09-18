@@ -13,7 +13,7 @@ path = "src/main.rs"
 anyhow = "1"
 clap = { version = "4", features = ["derive"] }
 crossterm = "0.29"
-cybercore = { path = "../../.sysops/cybercore" }
+cybercore = "0.4"
 little_exif = "0.6"
 ratatui = "0.30"
 serde = { version = "1", features = ["derive"] }

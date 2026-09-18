@@ -39,11 +39,7 @@ impl Preset {
 }
 
 pub fn list_presets() -> &'static [Preset] {
-    &[
-        Preset::StripGps,
-        Preset::AnonymousCamera,
-        Preset::ClearAll,
-    ]
+    &[Preset::StripGps, Preset::AnonymousCamera, Preset::ClearAll]
 }
 
 pub fn apply_preset(doc: &mut MetaDoc, preset: Preset) -> Result<()> {
@@ -70,8 +66,7 @@ pub fn apply_preset(doc: &mut MetaDoc, preset: Preset) -> Result<()> {
             doc.metadata.remove_tag(ExifTag::UserComment(Vec::new()));
             doc.metadata.set_tag(ExifTag::Make("Generic".into()));
             doc.metadata.set_tag(ExifTag::Model("Camera".into()));
-            doc.metadata
-                .set_tag(ExifTag::Software("cybermeta".into()));
+            doc.metadata.set_tag(ExifTag::Software("cybermeta".into()));
         }
         Preset::ClearAll => {
             doc.strip_all();

@@ -1,47 +1,76 @@
 #!/usr/bin/env bash
-set -euo pipefail
+# Install cybermeta from the latest GitHub release.
+#
+#   curl -fsSL https://raw.githubusercontent.com/darkstardevx/cybermeta/main/install.sh | sh
+#
+# Supported: Linux (x86_64, aarch64) and macOS (x86_64, aarch64).
+set -eu
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-cd "$ROOT"
+REPO="darkstardevx/cybermeta"
+INSTALL_DIR="${CYBERMETA_INSTALL_DIR:-$HOME/.local/bin}"
 
-# Prefer the cybercore schema cargo target root when unset.
-if [[ -z "${CARGO_TARGET_DIR:-}" ]]; then
-  SCHEMA_TARGET="$HOME/.cargo-target"
-  if [[ -d "$SCHEMA_TARGET" ]]; then
-    export CARGO_TARGET_DIR="$SCHEMA_TARGET"
-  fi
-fi
-
-echo "Building cybermeta (release)..."
-cargo build --release
-
-if [[ -n "${CARGO_TARGET_DIR:-}" ]]; then
-  BIN_SRC="${CARGO_TARGET_DIR}/release/cybermeta"
-elif [[ -f "$HOME/.cargo/config.toml" ]] && grep -q "target-dir" "$HOME/.cargo/config.toml"; then
-  TARGET_DIR=$(grep "target-dir" "$HOME/.cargo/config.toml" | sed -E 's/.*=\s*"(.*)"/\1/')
-  BIN_SRC="${TARGET_DIR}/release/cybermeta"
-else
-  BIN_SRC="target/release/cybermeta"
-fi
-
-if [[ ! -f "$BIN_SRC" ]]; then
-  echo "Could not find built binary at: $BIN_SRC"
-  echo "Check your cargo target-dir configuration."
+die() {
+  echo "error: $*" >&2
   exit 1
+}
+
+need() {
+  command -v "$1" >/dev/null 2>&1 || die "'$1' is required but not found on PATH"
+}
+
+need curl
+need tar
+
+if ! command -v shasum >/dev/null 2>&1 && ! command -v sha256sum >/dev/null 2>&1; then
+  die "need either 'shasum' or 'sha256sum' on PATH"
 fi
 
-BIN_DST="$HOME/.local/bin/cybermeta"
-mkdir -p "$HOME/.local/bin"
-cp "$BIN_SRC" "$BIN_DST"
-chmod +x "$BIN_DST"
+sha256_check() {
+  if command -v sha256sum >/dev/null 2>&1; then
+    sha256sum -c "$1"
+  else
+    shasum -a 256 -c "$1"
+  fi
+}
 
-echo "Installed to $BIN_DST"
+os="$(uname -s)"
+case "$os" in
+  Linux) platform="unknown-linux-gnu" ;;
+  Darwin) platform="apple-darwin" ;;
+  *) die "unsupported OS: $os (cybermeta supports Linux and macOS)" ;;
+esac
 
-if command -v cybermeta >/dev/null 2>&1; then
-  echo "Done — run 'cybermeta' to start."
-else
-  echo "Installed, but ~/.local/bin isn't on your \$PATH yet."
-  echo "Add this to your shell config, then restart your shell:"
-  echo ""
-  echo "  export PATH=\"\$HOME/.local/bin:\$PATH\""
-fi
+arch="$(uname -m)"
+case "$arch" in
+  x86_64|amd64) arch="x86_64" ;;
+  arm64|aarch64) arch="aarch64" ;;
+  *) die "unsupported architecture: $arch" ;;
+esac
+
+target="${arch}-${platform}"
+archive="cybermeta-${target}.tar.gz"
+base_url="https://github.com/${REPO}/releases/latest/download"
+
+tmp_dir="$(mktemp -d)"
+trap 'rm -rf "$tmp_dir"' EXIT
+
+echo "Downloading ${archive}..."
+curl -fsSL "${base_url}/${archive}" -o "${tmp_dir}/${archive}"
+curl -fsSL "${base_url}/${archive}.sha256" -o "${tmp_dir}/${archive}.sha256"
+
+echo "Verifying checksum..."
+(cd "$tmp_dir" && sha256_check "${archive}.sha256")
+
+echo "Installing to ${INSTALL_DIR}..."
+mkdir -p "$INSTALL_DIR"
+tar -xzf "${tmp_dir}/${archive}" -C "$tmp_dir"
+install -m 755 "${tmp_dir}/cybermeta" "${INSTALL_DIR}/cybermeta"
+
+echo ""
+echo "cybermeta installed to ${INSTALL_DIR}/cybermeta"
+case ":$PATH:" in
+  *":$INSTALL_DIR:"*) ;;
+  *) echo "Note: ${INSTALL_DIR} is not on your PATH. Add it, e.g.:" ;
+     echo "  export PATH=\"${INSTALL_DIR}:\$PATH\"" ;;
+esac
+echo "Run 'cybermeta --help' to get started."

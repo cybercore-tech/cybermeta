@@ -1,0 +1,18 @@
+cybermeta Tag Redact Palette
+
+Void         #070a09
+Panel        #0e1614
+Line         #1e2d29
+Teal         #2DD4BF   (kept/intact tag)
+Coral        #FF6B5C   (redacted/stripped tag)
+White        #EAFAF5
+Muted        #7D9992
+
+Teal + coral is a classic photography color-grading pairing, chosen
+deliberately for an EXIF/image-metadata tool -- distinct from every
+other tool's accent duo this session.
+
+Fonts: IBM Plex Sans (headings/body) + IBM Plex Mono (data/tags) --
+an official-document/report pairing, matching the site's forensic
+case-file theme. Both embedded as base64 woff2 in every text-bearing
+SVG (badge, hero, logo-horizontal, social-card).

@@ -297,8 +297,7 @@ impl App {
                         match doc.set_string_tag(&tag.name, &self.input) {
                             Ok(()) => {
                                 self.refresh_tags();
-                                self.message =
-                                    format!("set {} (unsaved)", tag.name);
+                                self.message = format!("set {} (unsaved)", tag.name);
                             }
                             Err(err) => self.message = format!("edit failed: {err:#}"),
                         }
@@ -475,10 +474,7 @@ impl App {
                     t.name,
                     truncate(&t.value, 40)
                 );
-                ListItem::new(Span::styled(
-                    label,
-                    Style::default().fg(self.theme.white),
-                ))
+                ListItem::new(Span::styled(label, Style::default().fg(self.theme.white)))
             })
             .collect();
 

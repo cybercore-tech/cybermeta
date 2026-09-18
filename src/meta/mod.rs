@@ -50,9 +50,8 @@ impl MetaDoc {
                 if msg.contains("No EXIF data found") {
                     Metadata::new()
                 } else {
-                    return Err(err).with_context(|| {
-                        format!("failed to read EXIF from {}", path.display())
-                    });
+                    return Err(err)
+                        .with_context(|| format!("failed to read EXIF from {}", path.display()));
                 }
             }
         };
@@ -86,7 +85,7 @@ impl MetaDoc {
             ExportFormat::Tsv => {
                 let mut out = String::from("name\thex\tgroup\tvalue\n");
                 for row in rows {
-                    let value = row.value.replace('\t', " ").replace('\n', " ");
+                    let value = row.value.replace(['\t', '\n'], " ");
                     out.push_str(&format!(
                         "{}\t{}\t{}\t{}\n",
                         row.name, row.hex, row.group, value
@@ -178,10 +177,7 @@ pub fn resolve_output(src: &Path, output: Option<&Path>, in_place: bool) -> Resu
     if in_place {
         return Ok(src.to_path_buf());
     }
-    let stem = src
-        .file_stem()
-        .and_then(|s| s.to_str())
-        .unwrap_or("image");
+    let stem = src.file_stem().and_then(|s| s.to_str()).unwrap_or("image");
     let ext = src.extension().and_then(|e| e.to_str()).unwrap_or("jpg");
     let parent = src.parent().unwrap_or_else(|| Path::new("."));
     Ok(parent.join(format!("{stem}.cybermeta.{ext}")))

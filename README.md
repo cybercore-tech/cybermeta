@@ -1,3 +1,14 @@
+<p align="center">
+  <img src="assets/cybermeta-brand/cybermeta-hero.svg" alt="cybermeta — TUI-first EXIF workstation" width="820">
+</p>
+
+<p align="center">
+  <a href="https://darkstardevx.github.io/cybermeta/">Site →</a>
+</p>
+
+[![CI](https://github.com/darkstardevx/cybermeta/actions/workflows/ci.yml/badge.svg)](https://github.com/darkstardevx/cybermeta/actions/workflows/ci.yml)
+[![Release](https://github.com/darkstardevx/cybermeta/actions/workflows/release.yml/badge.svg)](https://github.com/darkstardevx/cybermeta/actions/workflows/release.yml)
+
 # cybermeta
 
 TUI-first EXIF workstation for the **Cybercore Systems Framework**.
@@ -7,13 +18,12 @@ Read, edit, strip, and spoof image metadata without re-encoding pixels. Interact
 ## Install
 
 ```bash
-cd cybermeta
-./install.sh
+curl -fsSL https://raw.githubusercontent.com/darkstardevx/cybermeta/main/install.sh | sh
 ```
 
-Builds a release binary and installs it to `~/.local/bin/cybermeta`. Override the cargo target with `CARGO_TARGET_DIR` if needed (cybercore’s schema default is `~/.cargo-target`).
-
-Requires a local checkout of cybercore at `~/.sysops/cybercore` (path dependency).
+Downloads the latest release for your platform (Linux or macOS, x86_64
+or aarch64), verifies its SHA-256 checksum, and installs `cybermeta`
+to `~/.local/bin`. Or build from source with `cargo build --release`.
 
 ## Usage
 
