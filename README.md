@@ -3,11 +3,11 @@
 </p>
 
 <p align="center">
-  <a href="https://darkstardevx.github.io/cybermeta/">Site →</a>
+  <a href="https://cybercore-tech.github.io/cybermeta/">Site →</a>
 </p>
 
-[![CI](https://github.com/darkstardevx/cybermeta/actions/workflows/ci.yml/badge.svg)](https://github.com/darkstardevx/cybermeta/actions/workflows/ci.yml)
-[![Release](https://github.com/darkstardevx/cybermeta/actions/workflows/release.yml/badge.svg)](https://github.com/darkstardevx/cybermeta/actions/workflows/release.yml)
+[![CI](https://github.com/cybercore-tech/cybermeta/actions/workflows/ci.yml/badge.svg)](https://github.com/cybercore-tech/cybermeta/actions/workflows/ci.yml)
+[![Release](https://github.com/cybercore-tech/cybermeta/actions/workflows/release.yml/badge.svg)](https://github.com/cybercore-tech/cybermeta/actions/workflows/release.yml)
 
 # cybermeta
 
