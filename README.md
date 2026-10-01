@@ -13,7 +13,7 @@
 
 TUI-first EXIF workstation for the **Cybercore Systems Framework**.
 
-Read, edit, strip, and spoof image metadata without re-encoding pixels. Interactive UI uses the embedded CYBERGRID palette from [`cybercore`](https://github.com/darkstardevx) (`~/.sysops/cybercore`). CLI subcommands stay machine-parsable for scripts and pipes.
+Read, edit, strip, and spoof image metadata without re-encoding pixels. Interactive UI uses the embedded CYBERGRID palette from [`cybercore`](https://github.com/cybercore-tech/cybercore) (`~/.sysops/cybercore`). CLI subcommands stay machine-parsable for scripts and pipes.
 
 ## Install
 
