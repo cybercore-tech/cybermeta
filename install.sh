@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # Install cybermeta from the latest GitHub release.
 #
-#   curl -fsSL https://raw.githubusercontent.com/darkstardevx/cybermeta/main/install.sh | sh
+#   curl -fsSL https://raw.githubusercontent.com/cybercore-tech/cybermeta/main/install.sh | sh
 #
 # Supported: Linux (x86_64, aarch64) and macOS (x86_64, aarch64).
 set -eu
 
-REPO="darkstardevx/cybermeta"
+REPO="cybercore-tech/cybermeta"
 INSTALL_DIR="${CYBERMETA_INSTALL_DIR:-$HOME/.local/bin}"
 
 die() {
