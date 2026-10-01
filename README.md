@@ -18,7 +18,7 @@ Read, edit, strip, and spoof image metadata without re-encoding pixels. Interact
 ## Install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/darkstardevx/cybermeta/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/cybercore-tech/cybermeta/main/install.sh | sh
 ```
 
 Downloads the latest release for your platform (Linux or macOS, x86_64
