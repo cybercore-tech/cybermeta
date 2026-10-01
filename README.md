@@ -76,8 +76,8 @@ JPEG / TIFF first-class. PNG, WebP, JXL, HEIF/AVIF where `little_exif` can write
 
 ## License
 
-MIT — Copyright (c) 2026 Cybercore Tech (subgridsec.org)
+MIT — Copyright (c) 2026 CYBERCORE TECH ([cybercoretech.net](https://cybercoretech.net/))
 
 Independent open-source utility under the Cyber prefix; no affiliation with any external cybersecurity vendor or agency.
 
-Contact: cybercore.sh+cybermeta@gmail.com · [subgridsec.org](https://subgridsec.org)
+Contact: [cybercore.sh+cybermeta@gmail.com](mailto:cybercore.sh+cybermeta@gmail.com) · [cybercoretech.net](https://cybercoretech.net/)
