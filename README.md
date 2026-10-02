@@ -80,4 +80,4 @@ MIT — Copyright (c) 2026 Cybercore Tech (subgridsec.org)
 
 Independent open-source utility under the Cyber prefix; no affiliation with any external cybersecurity vendor or agency.
 
-Contact: cybercore.sh+cybermeta@gmail.com · [subgridsec.org](https://subgridsec.org)
+Contact: [dev@cybercoretech.net](mailto:dev@cybercoretech.net) · [subgridsec.org](https://subgridsec.org)
